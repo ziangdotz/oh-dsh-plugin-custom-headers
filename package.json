@@ -1,0 +1,80 @@
+{
+  "name": "dsh-plugin-custom-headers",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cordis plugin that registers pi-ai provider routes whose final HTTP requests carry a deployment-configured User-Agent and arbitrary headers",
+  "keywords": [
+    "dsh",
+    "cordis",
+    "cordis-plugin",
+    "llm",
+    "pi-ai",
+    "provider",
+    "headers",
+    "user-agent"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "docs/**/*.md",
+    "docs/**/*.png",
+    "examples/**/*.yml",
+    "tools/compat-check.mjs",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "dsh": ">=0.2.2-rc.1 <0.3.0",
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-credentials": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-launch-environment": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-llm": "0.2.2-rc.1",
+    "@deepseek-ai/dsh-llm-pi-ai": "0.2.2-rc.1",
+    "@deepseek-ai/schemastery": "~3.19.0",
+    "@earendil-works/pi-ai": "^1.3.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "node tools/run-tests.mjs",
+    "test:wire": "node tools/run-tests.mjs adapter-wire",
+    "test:client": "node tools/run-tests.mjs client-bundle",
+    "test:discovery": "node tools/run-tests.mjs discovery",
+    "verify": "npm run check && npm run build && npm test",
+    "verify:full": "npm run compat && npm run verify",
+    "compat": "node tools/compat-check.mjs",
+    "compat:json": "node tools/compat-check.mjs --json",
+    "online": "node tools/online-smoke.mjs",
+    "vendor": "node tools/vendor-runtime-deps.mjs",
+    "pack:check": "npm pack --dry-run",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
+  }
+}

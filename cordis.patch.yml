@@ -1,0 +1,63 @@
+# dsh-plugin-custom-headers
+#
+# One row inserts the plugin and declares its provider routes. `headers` is the
+# only field this plugin adds to the official `llm-pi-ai` profile vocabulary;
+# everything else is resolved by the same rules the official adapter uses.
+#
+# The routes below are the deployment this bundle was built for. Rename the ids
+# (they must stay unique across the whole profile), or move the entries into the
+# profile's own patch layer — this file is only the bundle's default.
+- insert:
+    - id: CustomHeaders
+      name: dsh-plugin-custom-headers
+      config:
+        providers:
+          agentrouter-openai:
+            displayName: agentrouter-openai
+            api: openai-responses
+            baseURL: https://gateway.example.com/v1
+            apiKeyEnv: AGENTROUTER_OPENAI_API_KEY
+            headers:
+              User-Agent: claude-cli/2.1.303 (external, cli)
+            models:
+              - id: deepseek-v4-flash
+                name: DeepSeek V4 Flash
+                input: [text, image]
+                reasoningEfforts:
+                  off: null
+                  low: low
+                  medium: medium
+                  high: high
+              - id: gpt-6.1-sol
+                name: GPT-6.1 Sol
+                input: [text, image]
+                reasoningEfforts:
+                  off: null
+                  low: low
+                  medium: medium
+                  high: high
+              - id: gpt-6-astra
+                name: GPT-6 Astra
+                input: [text, image]
+                reasoningEfforts:
+                  off: null
+                  low: low
+                  medium: medium
+                  high: high
+          agentrouter-anthropic:
+            displayName: agentrouter-anthropic
+            api: anthropic-messages
+            baseURL: https://gateway.example.com
+            apiKeyEnv: AGENTROUTER_ANTHROPIC_API_KEY
+            headers:
+              User-Agent: claude-cli/2.1.303 (external, cli)
+            models:
+              - id: claude-opus-5-5
+                name: Claude Opus 5.5
+                input: [text, image]
+                reasoningEfforts:
+                  off: null
+                  low: low
+                  medium: medium
+                  high: high
+                  max: max

@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "detail": "docs/DETAIL.en.md",
+    "title": "dsh-plugin-custom-headers",
+    "description": "Registers custom pi-ai provider routes (OpenAI Chat Completions, OpenAI Responses, Anthropic Messages) whose final HTTP requests carry a deployment-configured User-Agent and extra headers."
+  }
+}

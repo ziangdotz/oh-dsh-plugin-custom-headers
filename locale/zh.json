@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "detail": "docs/DETAIL.zh.md",
+    "title": "dsh-plugin-custom-headers",
+    "description": "在 pi-ai 上注册自定义供应商路由（OpenAI Chat Completions、OpenAI Responses、Anthropic Messages），使其最终发出的 HTTP 请求携带部署配置的 User-Agent 及额外请求头。"
+  }
+}
